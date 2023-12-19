@@ -1,5 +1,14 @@
 version: "3.8"
 services:
+  mediawiki:
+    image: mediawiki
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+    volumes:
+      - ./LocalSettings.php:/var/www/html/LocalSettings.php
   db:
     image: mariadb:latest
     environment:
@@ -12,4 +21,4 @@ services:
       - ./scripts/data.sql:/docker-entrypoint-initdb.d/2.sql
       - ./backup:/backup
     ports:
-      - "3306:3306"
+      - 3306

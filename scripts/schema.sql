@@ -1,0 +1,13 @@
+-- Create the users table
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    age INT,
+    mail VARCHAR(100) NOT NULL
+);
+
+
+CREATE USER 'backup'@'localhost' IDENTIFIED BY 'backup_password';
+
+GRANT SELECT , SHOW DATABASES , LOCK TABLES , SHOW VIEW ON * . * TO 'backup'@'localhost' IDENTIFIED BY 'backup_password' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
